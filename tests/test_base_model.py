@@ -9,23 +9,28 @@ class TestBaseModel(unittest.TestCase):
         self.base_model = BaseModel()
 
     def test_id_generation(self):
-        self.assertIsNotNone(self.base_model.id)
-        self.assertIsInstance(self.base_model.id, str)
+        base_model = BaseModel()
+        self.assertIsNotNone(base_model.id)
+        self.assertIsInstance(base_model.id, str)
     
     def test_created_at(self):
-        self.assertIsNotNone(self.base_model.created_at)
-        self.assertIsInstance(self.base_model.created_at, datetime)
+        base_model = BaseModel()
+        self.assertIsNotNone(base_model.created_at)
+        self.assertIsInstance(base_model.created_at, datetime)
     
     def test_save_method(self):
-        previous_updated_at = self.base_model.updated_at
-        self.base_model.save()
-        self.assertNotEqual(previous_updated_at, self.base_model.updated_at)
+        base_model = BaseModel()
+        previous_updated_at = base_model.updated_at
+        base_model.save()
+        self.assertNotEqual(previous_updated_at, base_model.updated_at)
 
     def test_to_dict_method(self):
-        obj_dict = self.base_model.to_dict()
+        base_model = BaseModel()
+        obj_dict = base_model.to_dict()
         self.assertIsInstance(obj_dict, dict)
         self.assertEqual(obj_dict["__class__"], "BaseModel")
     
     def test_str_method(self):
-        expected_string = f"[BaseModel] ({self.base_model.id}) {self.base_model.__dict__}"
-        self.assertEqual(str(self.base_model), expected_string)
+        base_model = BaseModel()
+        expected_string = f"[BaseModel] ({base_model.id}) {base_model.__dict__}"
+        self.assertEqual(str(base_model), expected_string)
