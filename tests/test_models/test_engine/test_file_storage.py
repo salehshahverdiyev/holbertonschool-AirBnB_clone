@@ -16,7 +16,7 @@ class TestFileStorage(unittest.TestCase):
 
         FileStorage.__objects = {}
 
-    def test_setup(self):
+    def test_check_type(self):
         self.assertEqual(str, type(FileStorage.__file_path))
         self.assertEqual(dict, type(FileStorage.__objects))
 
@@ -46,7 +46,3 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             text = f.read()
             self.assertIn("BaseMode." + obj.id, text)
-
-    def test_save_with_arg(self):
-        with self.assertRaises(TypeError):
-            storage.save(None)

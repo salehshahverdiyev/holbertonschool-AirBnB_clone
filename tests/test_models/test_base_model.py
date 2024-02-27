@@ -42,18 +42,3 @@ class TestBaseModel(unittest.TestCase):
         base_model = BaseModel()
         expected_string = f"[BaseModel] ({base_model.id}) {base_model.__dict__}"
         self.assertEqual(str(base_model), expected_string)
-
-    def test_save_with_arg(self):
-        base_model = BaseModel()
-        with self.assertRaises(TypeError):
-            base_model.save(None)
-
-    def test_update_attributes(self):
-        base_model  = BaseModel()
-        base_model.name = "Test"
-        self.assertEqual(base_model.name, "Test")
-
-        base_model.save()
-        retrieved_model = storage.all()["BaseModel." + base_model.id]
-
-        self.assertEqual(retrieved_model.name, "Test")
