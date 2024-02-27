@@ -46,3 +46,7 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             text = f.read()
             self.assertIn("BaseMode." + obj.id, text)
+
+    def test_save_with_arg(self):
+        with self.assertRaises(TypeError):
+            storage.save(None)
