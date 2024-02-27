@@ -2,17 +2,19 @@
 
 
 import uuid
-import models
 from datetime import datetime
+
+import models
+
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at":
-                    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key == "updated_at":
-                    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
                     setattr(self, key, value)
         else:

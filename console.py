@@ -1,39 +1,40 @@
 #!/usr/bin/python3
-'''
-Documentation
-'''
 
 import cmd
-import sys
 
 
 class HBNBCommand(cmd.Cmd):
-    prompt = "(hbnb)"
+    """
+    This class represents the command-line interface for the AirBnB clone.
+    It provides various commands for interacting with the application.
+    """
+
+    prompt = "(hbnb) "
 
     def do_quit(self, args):
-        '''
-        Quit command to exit the program
-        '''
+        """
+        Quit the command-line interface.
+        """
         raise SystemExit
 
     def do_EOF(self, args):
-        '''
-        EOF
-        '''
+        """
+        Handle the end-of-file signal.
+        """
         return True
 
     def do_help(self, args):
-        '''
-        Help
-        '''
+        """
+        Display help information for a specific command or list all available commands.
+        """
         cmd.Cmd.do_help(self, args)
 
     def emptyline(self):
-        '''
-        an empty line + ENTER shouldn't execute anything
-        '''
+        """
+        Do nothing when an empty line is entered.
+        """
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()

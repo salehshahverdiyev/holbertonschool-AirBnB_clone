@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 
 import os
-from datetime import datetime
 import unittest
-from models.base_model import BaseModel
+from datetime import datetime
+
 from models import storage
+from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+
 
 class TestBaseModel(unittest.TestCase):
     def setUp(self):
@@ -20,7 +22,7 @@ class TestBaseModel(unittest.TestCase):
         base_model = BaseModel()
         self.assertIsNotNone(base_model.id)
         self.assertIsInstance(base_model.id, str)
-    
+
     def test_created_at(self):
         base_model = BaseModel()
         self.assertIsNotNone(base_model.created_at)
