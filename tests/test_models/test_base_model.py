@@ -3,6 +3,7 @@
 from datetime import datetime
 import unittest
 from models.base_model import BaseModel
+from models import storage
 
 class TestBaseModel(unittest.TestCase):
     def test_setup(self):
@@ -36,6 +37,16 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(str(base_model), expected_string)
 
     def test_save_with_arg(self):
-        obj = BaseModel()
+        base_model = BaseModel()
         with self.assertRaises(TypeError):
-            obj.save(None)
+            base_model.save(None)
+
+    def test_update_attributes(self):
+        base_model  = BaseModel()
+        base_model.name = "Test"
+        self.assertEqual(base_model.name, "Test")
+
+        base_model.save()
+        retrieved_model = storage.all()["BaseModel." + base_model.id]
+
+        self.assertEqual(retrieved_model.name, "Test")
