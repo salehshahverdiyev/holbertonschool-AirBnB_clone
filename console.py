@@ -14,7 +14,7 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
-    models = ["BaseModel"]
+    __models = ["BaseModel"]
 
     def do_quit(self, args):
         """
@@ -46,9 +46,11 @@ class HBNBCommand(cmd.Cmd):
         Create a new instance of a class.
         Usage: create <class name>
         """
-        if not args:
+        args_list = args.split()
+
+        if not args_list[0]:
             print("** class name missing **")
-        elif args not in HBNBCommand.models:
+        elif args_list[0] not in HBNBCommand.__models:
             print("** class doesn't exist **")
         else:
             new_instance = BaseModel()
@@ -64,10 +66,13 @@ class HBNBCommand(cmd.Cmd):
 
         if not args_list:
             print("** class name missing **")
-        elif args_list[0] not in HBNBCommand.models:
+            return
+        elif args_list[0] not in HBNBCommand.__models:
             print("** class doesn't exist **")
+            return
         elif len(args_list) < 2:
             print("** instance id missing **")
+            return
 
         key = args_list[0] + "." + args_list[1]
 
@@ -76,6 +81,41 @@ class HBNBCommand(cmd.Cmd):
         else:
             print(storage.all()[key])
 
+    def do_destroy(self, args):
+            """
+            Destroy an instance based on the class name and instance id.
+            Usage: destroy <class name> <id>
+            """
+            args_list = args.split()
+
+            if not args_list:
+                print("** class name missing **")
+                return
+            elif args_list[0] not in HBNBCommand.__models:
+                print("** class doesn't exist **")
+                return
+            elif len(args_list) < 2:
+                print("** instance id missing **")
+                return
+
+            key = args_list[0] + "." + args_list[1]
+
+            if key not in storage.all():
+                print("** no instance found **")
+            else:
+                del storage.all()[key]
+                storage.save()
+
+    def do_all(self, args):
+        """
+        """
+        args_list = args.split()
+
+        if args_list and args_list[0] not in HBNBCommand.__models:
+            print("** class doesn't exist **")
+            return
+        else:
+            print([str(obj) for obj in storage.all().values()])
 
 
 if __name__ == "__main__":
