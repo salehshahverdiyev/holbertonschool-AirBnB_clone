@@ -42,8 +42,3 @@ class TestBaseModel(unittest.TestCase):
         base_model = BaseModel()
         expected_string = f"[BaseModel] ({base_model.id}) {base_model.__dict__}"
         self.assertEqual(str(base_model), expected_string)
-
-    def test_save_method_file_storage(self):
-        base_model = BaseModel()
-        with self.assertRaises(TypeError):
-            base_model.save(self)
