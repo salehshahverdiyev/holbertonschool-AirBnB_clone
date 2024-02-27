@@ -48,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args_list = args.split()
 
-        if not args_list[0]:
+        if not args_list:
             print("** class name missing **")
         elif args_list[0] not in HBNBCommand.__models:
             print("** class doesn't exist **")
@@ -155,7 +155,7 @@ class HBNBCommand(cmd.Cmd):
                 elif isinstance(attribute_name, float):
                     setattr(instance, attribute_name, float(attribute_value))
                 else:
-                    setattr(instance, attribute_name, attribute_value)
+                    setattr(instance, attribute_name, str(attribute_value))
 
                 instance.save()
 
