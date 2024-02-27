@@ -3,6 +3,8 @@
 This module contains the entry point of the command interpreter.
 """
 import cmd
+from utils import isdigit
+from utils import isfloat
 from models import storage
 from models.base_model import BaseModel
 
@@ -150,11 +152,12 @@ class HBNBCommand(cmd.Cmd):
                 attribute_name = args_list[2]
                 attribute_value = args_list[3]
 
-                if isinstance(attribute_name, int):
-                    setattr(instance, attribute_name, int(attribute_name))
-                elif isinstance(attribute_name, float):
+                if isdigit(attribute_value):
+                    setattr(instance, attribute_name, int(attribute_value))
+                elif isfloat(attribute_value):
                     setattr(instance, attribute_name, float(attribute_value))
                 else:
+                    attribute_value = attribute_value[1:-1]
                     setattr(instance, attribute_name, str(attribute_value))
 
                 instance.save()
