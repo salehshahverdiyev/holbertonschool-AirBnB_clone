@@ -38,7 +38,7 @@ class TestBaseModel(unittest.TestCase):
         base_model.my_number = 89
         base_model.save()
         self.assertTrue(os.path.exists("file.json"))
-        self.assertTrue("BaseModel." + base_model.id in storage.all())
+        self.assertIn("BaseModel." + base_model.id, storage.all())
 
     def test_to_dict_method(self):
         base_model = BaseModel()
