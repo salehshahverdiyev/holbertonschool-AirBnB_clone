@@ -122,45 +122,47 @@ class HBNBCommand(cmd.Cmd):
                 print([str(obj) for obj in storage.all().values()])
 
     def do_update(self, args):
-        """
-        """
-        args_list = args.split()
+            """
+            Update an instance attribute of a given class and id.
+            Usage: update <class name> <id> <attribute name> <attribute value>
+            """
+            args_list = args.split()
 
-        if not args_list:
-            print("** class name missing **")
-            return
-        elif args_list[0] not in HBNBCommand.__models:
-            print("** class doesn't exist **")
-            return
-        elif len(args_list) < 2:
-            print("** instance id missing **")
-            return
-
-        key = args_list[0] + "." + args_list[1]
-
-        if key not in storage.all():
-            print("** no instance found **")
-        else:
-            if len(args_list) < 3:
-                print("** attribute name missing **")
+            if not args_list:
+                print("** class name missing **")
                 return
-            elif len(args_list) < 4:
-                print("** value missing **")
+            elif args_list[0] not in HBNBCommand.__models:
+                print("** class doesn't exist **")
                 return
+            elif len(args_list) < 2:
+                print("** instance id missing **")
+                return
+
+            key = args_list[0] + "." + args_list[1]
+
+            if key not in storage.all():
+                print("** no instance found **")
             else:
-                instance = storage.all()[key]
-                attribute_name = args_list[2]
-                attribute_value = args_list[3]
-
-                if isdigit(attribute_value):
-                    setattr(instance, attribute_name, int(attribute_value))
-                elif isfloat(attribute_value):
-                    setattr(instance, attribute_name, float(attribute_value))
+                if len(args_list) < 3:
+                    print("** attribute name missing **")
+                    return
+                elif len(args_list) < 4:
+                    print("** value missing **")
+                    return
                 else:
-                    attribute_value = attribute_value[1:-1]
-                    setattr(instance, attribute_name, str(attribute_value))
+                    instance = storage.all()[key]
+                    attribute_name = args_list[2]
+                    attribute_value = args_list[3]
 
-                instance.save()
+                    if isdigit(attribute_value):
+                        setattr(instance, attribute_name, int(attribute_value))
+                    elif isfloat(attribute_value):
+                        setattr(instance, attribute_name, float(attribute_value))
+                    else:
+                        attribute_value = attribute_value[1:-1]
+                        setattr(instance, attribute_name, str(attribute_value))
+
+                    instance.save()
 
 
 if __name__ == "__main__":
