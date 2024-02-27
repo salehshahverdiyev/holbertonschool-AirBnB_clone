@@ -32,6 +32,14 @@ class TestBaseModel(unittest.TestCase):
         base_model.save()
         self.assertNotEqual(previous_updated_at, base_model.updated_at)
 
+    def test_save_method_with_storage(self):
+        base_model = BaseModel()
+        base_model.name = "My_First_Model"
+        base_model.my_number = 89
+        base_model.save()
+        self.assertTrue(os.path.exists("file.json"))
+        self.assertTrue("BaseModel." + base_model.id in storage.all())
+
     def test_to_dict_method(self):
         base_model = BaseModel()
         obj_dict = base_model.to_dict()
