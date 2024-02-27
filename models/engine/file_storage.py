@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-
 import json
+from models.base_model import BaseModel
 
 class FileStorage:
     __file_path = "file.json"
@@ -23,4 +23,10 @@ class FileStorage:
             json.dump(new_items, f)
 
     def reload(self):
-        pass
+        try:
+            with open(FileStorage.__file_path, "r") as f:
+                objs = json.load(f)
+            for key in objs:
+                FileStorage.__objects[key] = BaseModel(**objs[key])
+        except Exception:
+            pass
