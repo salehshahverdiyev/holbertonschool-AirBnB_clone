@@ -41,7 +41,7 @@ class TestFileStorage(unittest.TestCase):
         obj = BaseModel()
 
         storage.new(obj)
-        storage.save()
+        obj.save()
 
         with open("file.json", "r") as f:
             text = f.read()
