@@ -24,7 +24,7 @@ cd holbertonschool-AirBnB_clone
 
 <h2 align="center">Storage</h2>
 
-The command interpreter uses a storage engine to manage AirBnB objects. The storage engine is implemented using a JSON file to store and retrieve objects. The storage engine is defined in the ![file_storage.py](./models/engine/file_storage.py) module. The storage engine supports the following methods:
+The command interpreter uses a storage engine to manage AirBnB objects. The storage engine is implemented using a JSON file to store and retrieve objects. The storage engine is defined in the [file_storage.py](./models/engine/file_storage.py) module. The storage engine supports the following methods:
 
 - `all`: Retrieve all objects from the storage.
 - `new`: Add a new object to the storage.
@@ -115,7 +115,7 @@ echo "help" | ./console.py
 
 <h2 align="center">Testing</h2>
 
-Unit tests for the command interpreter are located in the ![tests](./tests/) directory. To run the tests, navigate to the project directory and run the following command:
+Unit tests for the command interpreter are located in the [tests](./tests/) directory. To run the tests, navigate to the project directory and run the following command:
 
 ```
 python3 -m unittest discover tests
@@ -124,9 +124,9 @@ python3 -m unittest discover tests
 
 <h2 align="center">Authors</h2>
 
-- ![Saleh Shahverdiyev](https://github.com/salehshahverdiyev)
-- ![Zaman Kazimov](https://github.com/kazimovzaman2)
+- [Saleh Shahverdiyev](https://github.com/salehshahverdiyev)
+- [Zaman Kazimov](https://github.com/kazimovzaman2)
 
 
 <h2 align="center">License</h2>
-This project is licensed under the GNU GENERAL PUBLIC LICENSE - see the ![LICENSE](./LICENSE) file for details.
+This project is licensed under the GNU GENERAL PUBLIC LICENSE - see the [LICENSE](./LICENSE) file for details.
