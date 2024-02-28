@@ -41,4 +41,4 @@ class TestFileStorage(unittest.TestCase):
 
         with open("file.json", "r") as f:
             text = f.read()
-            self.assertIn("BaseMode." + obj.id, text)
+            self.assertIn("BaseModel." + obj.id, text)
