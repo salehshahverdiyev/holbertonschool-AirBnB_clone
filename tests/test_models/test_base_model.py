@@ -6,7 +6,6 @@ from datetime import datetime
 
 from models import storage
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
 
 
 class TestBaseModel(unittest.TestCase):
@@ -16,7 +15,7 @@ class TestBaseModel(unittest.TestCase):
         except IOError:
             pass
 
-        FileStorage.__objects = {}
+        storage.__objects = {}
 
     def test_id_generation(self):
         base_model = BaseModel()
