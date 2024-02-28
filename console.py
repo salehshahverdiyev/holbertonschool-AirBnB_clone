@@ -7,6 +7,7 @@ from utils import isdigit
 from utils import isfloat
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -16,7 +17,7 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
-    __models = ["BaseModel"]
+    __models = ["BaseModel", "User"]
 
     def do_quit(self, args):
         """
@@ -55,9 +56,8 @@ class HBNBCommand(cmd.Cmd):
         elif args_list[0] not in HBNBCommand.__models:
             print("** class doesn't exist **")
         else:
-            new_instance = BaseModel()
-            new_instance.save()
-            print(new_instance.id)
+            print(eval(args_list[0])().id)
+            storage.save()
 
     def do_show(self, args):
         """
