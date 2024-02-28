@@ -16,6 +16,9 @@ class TestAmenity(unittest.TestCase):
 
         storage.__objects = {}
 
+    def test_check_type(self):
+        self.assertIsInstance(State.name, str)
+
     def test_name(self):
         state_model = State()
         state_model.name = "Test"
