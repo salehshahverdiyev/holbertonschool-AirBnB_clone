@@ -9,6 +9,10 @@ from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
+    """
+    This class contains unit tests for the BaseModel class.
+    """
+
     def setUp(self):
         try:
             os.remove("file.json")
@@ -49,5 +53,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_str_method(self):
         base_model = BaseModel()
-        expected_string = f"[BaseModel] ({base_model.id}) {base_model.__dict__}"
+        expected_string = (
+            f"[BaseModel] ({base_model.id}) {base_model.__dict__}"
+        )
         self.assertEqual(str(base_model), expected_string)

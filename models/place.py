@@ -6,7 +6,7 @@ from models.base_model import BaseModel
 
 class Place(BaseModel):
     """
-
+    Place class represents a place listing in the AirBnB clone application.
     """
 
     city_id = ""

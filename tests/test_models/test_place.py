@@ -8,6 +8,10 @@ from models.place import Place
 
 
 class TestPlace(unittest.TestCase):
+    """
+    This class contains unit tests for the Place class.
+    """
+
     def setUp(self):
         try:
             os.remove("file.json")

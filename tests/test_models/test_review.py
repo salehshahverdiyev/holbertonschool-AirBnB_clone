@@ -8,6 +8,10 @@ from models.review import Review
 
 
 class TestReview(unittest.TestCase):
+    """
+    This class contains unit tests for the Review class.
+    """
+
     def setUp(self):
         try:
             os.remove("file.json")

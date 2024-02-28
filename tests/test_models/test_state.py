@@ -8,6 +8,10 @@ from models.state import State
 
 
 class TestAmenity(unittest.TestCase):
+    """
+    This class contains unit tests for the State class.
+    """
+
     def setUp(self):
         try:
             os.remove("file.json")

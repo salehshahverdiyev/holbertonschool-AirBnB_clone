@@ -8,6 +8,10 @@ from models.user import User
 
 
 class TestUser(unittest.TestCase):
+    """
+    This class contains unit tests for the User class.
+    """
+
     def setUp(self):
         try:
             os.remove("file.json")

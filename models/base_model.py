@@ -8,7 +8,15 @@ import models
 
 
 class BaseModel:
+    """
+    Base class for all models in the AirBnB clone project.
+    """
+
     def __init__(self, *args, **kwargs):
+        """
+        Initializes a new instance of the BaseModel class.
+        """
+
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at":
@@ -24,6 +32,10 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
+        """
+        Returns a string representation of the BaseModel instance.
+        """
+
         class_name = self.__class__.__name__
         return "[{}] ({}) {}".format(
             class_name,
@@ -32,10 +44,19 @@ class BaseModel:
         )
 
     def save(self):
+        """
+        Updates the updated_at attribute with
+        the current datetime and saves the instance.
+        """
+
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
+        """
+        Returns a dictionary representation of the BaseModel instance.
+        """
+
         obj_dict = self.__dict__.copy()
         obj_dict["__class__"] = self.__class__.__name__
         obj_dict["created_at"] = self.created_at.isoformat()

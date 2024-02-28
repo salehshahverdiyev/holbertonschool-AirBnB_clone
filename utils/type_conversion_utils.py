@@ -10,6 +10,7 @@ def isdigit(num):
     except ValueError:
         return False
 
+
 def isfloat(num):
     try:
         float(num)

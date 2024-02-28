@@ -8,6 +8,10 @@ from models.city import City
 
 
 class TestAmenity(unittest.TestCase):
+    """
+    This class contains unit tests for the City class.
+    """
+
     def setUp(self):
         try:
             os.remove("file.json")

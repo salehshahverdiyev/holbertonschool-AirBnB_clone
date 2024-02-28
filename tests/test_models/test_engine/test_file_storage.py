@@ -8,6 +8,10 @@ from models.base_model import BaseModel
 
 
 class TestFileStorage(unittest.TestCase):
+    """
+    This class contains unit tests for the FileStorage class.
+    """
+
     def setUp(self):
         try:
             os.remove("file.json")
