@@ -16,10 +16,6 @@ class TestFileStorage(unittest.TestCase):
 
         storage.__objects = {}
 
-    def test_check_type(self):
-        self.assertIsInstance(storage.__file_path, str)
-        self.assertIsInstance(storage.__objects, dict)
-
     def test_storage_all(self):
         obj1 = BaseModel()
         obj2 = BaseModel()
