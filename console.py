@@ -84,85 +84,90 @@ class HBNBCommand(cmd.Cmd):
             print(storage.all()[key])
 
     def do_destroy(self, args):
-            """
-            Destroy an instance based on the class name and instance id.
-            Usage: destroy <class name> <id>
-            """
-            args_list = args.split()
+        """
+        Destroy an instance based on the class name and instance id.
+        Usage: destroy <class name> <id>
+        """
+        args_list = args.split()
 
-            if not args_list:
-                print("** class name missing **")
-                return
-            elif args_list[0] not in HBNBCommand.__models:
-                print("** class doesn't exist **")
-                return
-            elif len(args_list) < 2:
-                print("** instance id missing **")
-                return
+        if not args_list:
+            print("** class name missing **")
+            return
+        elif args_list[0] not in HBNBCommand.__models:
+            print("** class doesn't exist **")
+            return
+        elif len(args_list) < 2:
+            print("** instance id missing **")
+            return
 
-            key = args_list[0] + "." + args_list[1]
+        key = args_list[0] + "." + args_list[1]
 
-            if key not in storage.all():
-                print("** no instance found **")
-            else:
-                del storage.all()[key]
-                storage.save()
+        if key not in storage.all():
+            print("** no instance found **")
+        else:
+            del storage.all()[key]
+            storage.save()
 
     def do_all(self, args):
-            """
-            Print all string representations of objects in storage.
-            Usage: all <class name>
-            """
-            args_list = args.split()
+        """
+        Print all string representations of objects in storage.
+        Usage: all <class name>
+        """
+        args_list = args.split()
 
-            if args_list and args_list[0] not in HBNBCommand.__models:
+        if not args_list:
+            print([str(obj) for obj in storage.all().values()])
+            return
+        else:
+            if args_list[0] not in HBNBCommand.__models:
                 print("** class doesn't exist **")
                 return
             else:
-                print([str(obj) for obj in storage.all().values()])
+                print([str(obj) for obj in storage.all().values() if
+                       obj.__class__.__name__ == args_list[0]])
 
     def do_update(self, args):
-            """
-            Update an instance attribute of a given class and id.
-            Usage: update <class name> <id> <attribute name> <attribute value>
-            """
-            args_list = args.split()
+        """
+        Update an instance attribute of a given class and id.
+        Usage: update <class name> <id> <attribute name> <attribute value>
+        """
+        args_list = args.split()
 
-            if not args_list:
-                print("** class name missing **")
-                return
-            elif args_list[0] not in HBNBCommand.__models:
-                print("** class doesn't exist **")
-                return
-            elif len(args_list) < 2:
-                print("** instance id missing **")
-                return
+        if not args_list:
+            print("** class name missing **")
+            return
+        elif args_list[0] not in HBNBCommand.__models:
+            print("** class doesn't exist **")
+            return
+        elif len(args_list) < 2:
+            print("** instance id missing **")
+            return
 
-            key = args_list[0] + "." + args_list[1]
+        key = args_list[0] + "." + args_list[1]
 
-            if key not in storage.all():
-                print("** no instance found **")
+        if key not in storage.all():
+            print("** no instance found **")
+        else:
+            if len(args_list) < 3:
+                print("** attribute name missing **")
+                return
+            elif len(args_list) < 4:
+                print("** value missing **")
+                return
             else:
-                if len(args_list) < 3:
-                    print("** attribute name missing **")
-                    return
-                elif len(args_list) < 4:
-                    print("** value missing **")
-                    return
+                instance = storage.all()[key]
+                attribute_name = args_list[2]
+                attribute_value = args_list[3]
+
+                if isdigit(attribute_value):
+                    setattr(instance, attribute_name, int(attribute_value))
+                elif isfloat(attribute_value):
+                    setattr(instance, attribute_name, float(attribute_value))
                 else:
-                    instance = storage.all()[key]
-                    attribute_name = args_list[2]
-                    attribute_value = args_list[3]
+                    attribute_value = attribute_value[1:-1]
+                    setattr(instance, attribute_name, str(attribute_value))
 
-                    if isdigit(attribute_value):
-                        setattr(instance, attribute_name, int(attribute_value))
-                    elif isfloat(attribute_value):
-                        setattr(instance, attribute_name, float(attribute_value))
-                    else:
-                        attribute_value = attribute_value[1:-1]
-                        setattr(instance, attribute_name, str(attribute_value))
-
-                    instance.save()
+                instance.save()
 
 
 if __name__ == "__main__":
