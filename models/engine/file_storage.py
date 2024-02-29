@@ -20,6 +20,14 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
+    @property
+    def objects(self):
+        return self.__objects
+
+    @objects.setter
+    def objects(self, value):
+        FileStorage.__objects = value
+
     def all(self):
         """
         Returns the dictionary of all objects currently stored.

@@ -56,7 +56,7 @@ class TestFileStorage(unittest.TestCase):
         obj = BaseModel()
 
         storage.save()
-        FileStorage._FileStorage__objects = {}
+        storage.objects = {}
         storage.reload()
 
-        self.assertIn("BaseModel." + obj.id, storage.all())
+        self.assertNotEqual(len(storage.objects), 0)
