@@ -5,6 +5,7 @@ import unittest
 
 from models import storage
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 
 class TestFileStorage(unittest.TestCase):
@@ -19,6 +20,10 @@ class TestFileStorage(unittest.TestCase):
             pass
 
         storage.__objects = {}
+
+    def test_check_type(self):
+        self.assertIsInstance(FileStorage._FileStorage__file_path, str)
+        self.assertIsInstance(FileStorage._FileStorage__objects, str)
 
     def test_storage_all(self):
         obj1 = BaseModel()
