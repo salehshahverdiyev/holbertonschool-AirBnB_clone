@@ -2,7 +2,13 @@
 
 import json
 
+from models.amenity import Amenity
 from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class FileStorage:
@@ -50,6 +56,7 @@ class FileStorage:
             with open(FileStorage.__file_path, "r") as f:
                 objs = json.load(f)
             for key in objs:
-                FileStorage.__objects[key] = BaseModel(**objs[key])
+                class_name = key.split(".")[0]
+                FileStorage.__objects[key] = eval(f"{class_name}(**objs[key])")
         except Exception:
             pass
