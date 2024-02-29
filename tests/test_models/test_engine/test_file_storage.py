@@ -51,3 +51,11 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             text = f.read()
             self.assertIn("BaseModel." + obj.id, text)
+
+    def test_storage_reload(self):
+        obj = BaseModel()
+
+        storage.new(obj)
+        storage.save()
+        storage.reload()
+        self.assertNotEqual(len(storage.all()), 0)
