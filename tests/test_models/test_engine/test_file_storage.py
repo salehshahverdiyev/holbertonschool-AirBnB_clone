@@ -23,7 +23,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_check_type(self):
         self.assertIsInstance(FileStorage._FileStorage__file_path, str)
-        self.assertIsInstance(FileStorage._FileStorage__objects, str)
+        self.assertIsInstance(FileStorage._FileStorage__objects, dict)
 
     def test_storage_all(self):
         obj1 = BaseModel()
