@@ -33,3 +33,5 @@ class TestAmenity(unittest.TestCase):
         city_model = City()
         city_model.state_id = "123"
         self.assertEqual(city_model.state_id, "123")
+
+# test_city.py
