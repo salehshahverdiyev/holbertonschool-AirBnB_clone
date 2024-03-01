@@ -27,3 +27,5 @@ class TestAmenity(unittest.TestCase):
         state_model = State()
         state_model.name = "Test"
         self.assertEqual(state_model.name, "Test")
+
+# test_state.py
