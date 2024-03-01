@@ -45,3 +45,5 @@ class TestUser(unittest.TestCase):
         user_model = User()
         user_model.last_name = "Test"
         self.assertEqual(user_model.last_name, "Test")
+
+# test_user.py
