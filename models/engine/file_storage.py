@@ -3,13 +3,14 @@
 import json
 from models.base_model import BaseModel
 
+
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
         return FileStorage.__objects
-    
+
     def new(self, obj):
         class_name = obj.__class__.__name__
         FileStorage.__objects[f"{class_name}.{obj.id}"] = obj
@@ -30,3 +31,5 @@ class FileStorage:
                 FileStorage.__objects[key] = BaseModel(**objs[key])
         except Exception:
             pass
+
+# file_storage.py
