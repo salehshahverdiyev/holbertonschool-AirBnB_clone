@@ -17,3 +17,6 @@ def isfloat(num):
         return True
     except ValueError:
         return False
+
+# utils
+# type_conversion_utils.py
