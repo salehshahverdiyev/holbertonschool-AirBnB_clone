@@ -8,3 +8,5 @@ class Amenity(BaseModel):
     """Represents a feature or service provided by a property."""
 
     name = ""
+
+# amenity.py
