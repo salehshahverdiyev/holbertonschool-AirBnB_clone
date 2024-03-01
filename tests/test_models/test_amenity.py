@@ -27,3 +27,5 @@ class TestAmenity(unittest.TestCase):
         amenity_model = Amenity()
         amenity_model.name = "Test"
         self.assertEqual(amenity_model.name, "Test")
+
+# test_amenity.py
