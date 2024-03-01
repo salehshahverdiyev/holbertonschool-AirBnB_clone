@@ -124,8 +124,8 @@ python3 -m unittest discover tests
 
 <h2 align="center">Authors</h2>
 
-- [Saleh Shahverdiyev](https://github.com/salehshahverdiyev)
 - [Zaman Kazimov](https://github.com/kazimovzaman2)
+- [Saleh Shahverdiyev](https://github.com/salehshahverdiyev)
 
 
 <h2 align="center">License</h2>
