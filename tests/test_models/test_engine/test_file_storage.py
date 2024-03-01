@@ -2,23 +2,28 @@
 
 import os
 import unittest
+
+from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-from models import storage
 
 
 class TestFileStorage(unittest.TestCase):
+    """
+    This class contains unit tests for the FileStorage class.
+    """
+
     def setUp(self):
         try:
             os.remove("file.json")
         except IOError:
             pass
 
-        FileStorage.__objects = {}
+        storage.__objects = {}
 
     def test_check_type(self):
-        self.assertEqual(str, type(FileStorage.__file_path))
-        self.assertEqual(dict, type(FileStorage.__objects))
+        self.assertIsInstance(FileStorage._FileStorage__file_path, str)
+        self.assertIsInstance(FileStorage._FileStorage__objects, dict)
 
     def test_storage_all(self):
         obj1 = BaseModel()
@@ -45,4 +50,13 @@ class TestFileStorage(unittest.TestCase):
 
         with open("file.json", "r") as f:
             text = f.read()
-            self.assertIn("BaseMode." + obj.id, text)
+            self.assertIn("BaseModel." + obj.id, text)
+
+    def test_storage_reload(self):
+        obj = BaseModel()
+
+        storage.save()
+        storage.objects = {}
+        storage.reload()
+
+        self.assertNotEqual(len(storage.objects), 0)
