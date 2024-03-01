@@ -88,3 +88,5 @@ class TestPlace(unittest.TestCase):
         place_model = Place()
         place_model.amenity_ids = [1, 2]
         self.assertEqual(place_model.amenity_ids, [1, 2])
+
+# test_place.py
