@@ -39,3 +39,5 @@ class TestReview(unittest.TestCase):
         review_model = Review()
         review_model.text = "Text"
         self.assertEqual(review_model.text, "Text")
+
+# test_review.py
