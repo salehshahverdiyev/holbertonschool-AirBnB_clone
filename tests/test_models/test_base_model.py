@@ -57,3 +57,5 @@ class TestBaseModel(unittest.TestCase):
             f"[BaseModel] ({base_model.id}) {base_model.__dict__}"
         )
         self.assertEqual(str(base_model), expected_string)
+
+# test_base_model.py
