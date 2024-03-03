@@ -177,7 +177,7 @@ class HBNBCommand(cmd.Cmd):
                 elif isfloat(attribute_value):
                     setattr(instance, attribute_name, float(attribute_value))
                 else:
-                    attribute_value = attribute_value[1:-1]
+                    attribute_value = attribute_value.strip("\"")
                     setattr(instance, attribute_name, str(attribute_value))
 
                 instance.save()
@@ -214,6 +214,7 @@ class HBNBCommand(cmd.Cmd):
             "count": self.do_count,
             "show": self.do_show,
             "destroy": self.do_destroy,
+            "update": self.do_update,
         }
 
         if len(command_parts) < 2:
@@ -224,11 +225,16 @@ class HBNBCommand(cmd.Cmd):
         if model_name not in HBNBCommand.__models:
             return super().default(line)
 
-        method_name, method_args = method_part.split("(")
-        method_args = method_args[1:-2]
+        method_name, arg_list = method_part.split("(")
+        arg_list = arg_list[:-1]
+        arg_list = arg_list.split(", ")
 
         if method_name in model_methods:
-            model_methods[method_name](model_name + " " + method_args)
+            arguments = ""
+            for arg in arg_list:
+                arguments += arg[1:-1] + " "
+            print(model_name + " " + arguments)
+            model_methods[method_name](model_name + " " + arguments)
         else:
             return super().default(line)
 
