@@ -217,7 +217,7 @@ class HBNBCommand(cmd.Cmd):
 
         if len(command_parts) < 2:
             return super().default(line)
-        
+
         model_name, method_part = command_parts
 
         if model_name not in HBNBCommand.__models:
