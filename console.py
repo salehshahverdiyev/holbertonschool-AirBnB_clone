@@ -226,8 +226,7 @@ class HBNBCommand(cmd.Cmd):
             return super().default(line)
 
         method_name, arg_list = method_part.split("(")
-        arg_list = arg_list[:-1]
-        arg_list = arg_list.split(", ")
+        arg_list = arg_list[:-1].split(", ")
 
         if method_name in model_methods:
             arguments = ""
