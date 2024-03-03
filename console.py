@@ -208,27 +208,24 @@ class HBNBCommand(cmd.Cmd):
         """
         Executes the default behavior for an unrecognized command.
         """
-        line_list = line.split(".")
+        command_parts = line.split(".")
         model_methods = {
             "all": self.do_all,
             "count": self.do_count,
         }
-        model_method_name = ""
 
-        if line_list[0] in HBNBCommand.__models:
-            try:
-                for char in line_list[1]:
-                    if char == "(":
-                        break
-                    else:
-                        model_method_name += char
-            except IndexError:
-                return super().default(line)
+        if len(command_parts) < 2:
+            return super().default(line)
+        
+        model_name, method_part = command_parts
 
-            if model_method_name in model_methods:
-                model_methods[model_method_name](line_list[0])
-            else:
-                return super().default(line)
+        if model_name not in HBNBCommand.__models:
+            return super().default(line)
+
+        method_name = method_part.split("(")[0]
+
+        if method_name in model_methods:
+            model_methods[method_name](model_name)
         else:
             return super().default(line)
 
