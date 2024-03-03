@@ -204,6 +204,31 @@ class HBNBCommand(cmd.Cmd):
 
         print(count)
 
+    def default(self, line):
+        line_list = line.split(".")
+        model_methods = {
+            "all": self.do_all,
+            "count": self.do_count,
+        }
+        model_method_name = ""
+
+        if line_list[0] in HBNBCommand.__models:
+            try:
+                for char in line_list[1]:
+                    if char == "(":
+                        break
+                    else:
+                        model_method_name += char
+            except IndexError:
+                return super().default(line)
+
+            if model_method_name in model_methods:
+                model_methods[model_method_name](line_list[0])
+            else:
+                return super().default(line)
+        else:
+            return super().default(line)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
