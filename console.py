@@ -205,6 +205,9 @@ class HBNBCommand(cmd.Cmd):
         print(count)
 
     def default(self, line):
+        """
+        Executes the default behavior for an unrecognized command.
+        """
         line_list = line.split(".")
         model_methods = {
             "all": self.do_all,
