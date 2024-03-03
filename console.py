@@ -212,6 +212,7 @@ class HBNBCommand(cmd.Cmd):
         model_methods = {
             "all": self.do_all,
             "count": self.do_count,
+            "show": self.do_show,
         }
 
         if len(command_parts) < 2:
@@ -222,10 +223,11 @@ class HBNBCommand(cmd.Cmd):
         if model_name not in HBNBCommand.__models:
             return super().default(line)
 
-        method_name = method_part.split("(")[0]
+        method_name, method_args = method_part.split("(")
+        method_args = method_args[1:-2]
 
         if method_name in model_methods:
-            model_methods[method_name](model_name)
+            model_methods[method_name](model_name + " " + method_args)
         else:
             return super().default(line)
 
